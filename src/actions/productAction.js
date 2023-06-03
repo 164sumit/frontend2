@@ -131,9 +131,10 @@ export const getAdminProduct = (email,keyword="",page=1) => async (dispatch) => 
       // const config = {
       //   headers: { "Content-Type": "application/json" },
       // };
+      var token=await localStorage.getItem('token');
       const config = { headers: { "Content-Type": "multipart/form-data" } };
       const { data } = await axios.post(backend+
-        `/api/v1/product/new`,
+        `/api/v1/product/new/${token}`,
         productData,
         config
       );
