@@ -1,3 +1,4 @@
+const backend="https://campusdiary.onrender.com"
 import axios from "axios";
 import {
     ALL_PRODUCT_FAIL,
@@ -44,7 +45,7 @@ export const getProduct= (keyword="",page=1,maxprice=50000,minprice=0,category="
         url=`/api/v1/products?&keyword=${keyword}&page=${page}&minprice=${minprice}&maxprice=${maxprice}&category=${category}&sortByPrice=${sortBy}&sortBydate=${sortByDate}`;
     //     if(sortByDate){
     // }
-        const product = await axios.get( url);
+        const product = await axios.get(backend+ url);
         dispatch({
             type:ALL_PRODUCT_SUCCESS,
             payload:product.data
@@ -68,7 +69,7 @@ export const getProduct1= ()=> async (dispatch) =>{
         // url=`/api/v1/products?&keyword=${keyword}&page=${page}&minprice=${minprice}&maxprice=${maxprice}&category=${category}&sortByPrice=${sortBy}&sortBydate=${sortByDate}`;
     //     if(sortByDate){
     // }
-        const product = await axios.get( url);
+        const product = await axios.get(backend+ url);
         dispatch({
             type:ALL_PRODUCT_SUCCESS,
             payload:product.data
@@ -87,7 +88,7 @@ export const getProductDetails= (id)=> async (dispatch) =>{
             type:PRODUCT_DETAILS_REQUEST
         })
         // const urlWithProxy = "/api/v1";
-        const {data} = await axios.get( `/api/v1/product/${id}`);
+        const {data} = await axios.get(backend+ `/api/v1/product/${id}`);
         dispatch({
             type:PRODUCT_DETAILS_SUCCESS,
             payload:data.product,
@@ -107,7 +108,7 @@ export const getAdminProduct = (email,keyword="",page=1) => async (dispatch) => 
       dispatch({ type: ADMIN_PRODUCT_REQUEST });
       let url=`/api/v1/admin/products/${email}?&keyword=${keyword}&page=${page}`;
   
-      const { data } = await axios.get(url);
+      const { data } = await axios.get(backend+url);
   
       dispatch({
         type: ADMIN_PRODUCT_SUCCESS,
@@ -131,7 +132,7 @@ export const getAdminProduct = (email,keyword="",page=1) => async (dispatch) => 
       //   headers: { "Content-Type": "application/json" },
       // };
       const config = { headers: { "Content-Type": "multipart/form-data" } };
-      const { data } = await axios.post(
+      const { data } = await axios.post(backend+
         `/api/v1/product/new`,
         productData,
         config
@@ -156,7 +157,7 @@ export const getAdminProduct = (email,keyword="",page=1) => async (dispatch) => 
   
       const config = { headers: { "Content-Type": "multipart/form-data" } };
   
-      const { data } = await axios.put(
+      const { data } = await axios.put(backend+
         `/api/v1/product/${id}`,
         productData,
         config
@@ -180,7 +181,7 @@ export const deleteProduct = (id) => async (dispatch) => {
     try {
       dispatch({ type: DELETE_PRODUCT_REQUEST });
   
-      const { data } = await axios.delete(`/api/v1/product/${id}`);
+      const { data } = await axios.delete(backend+`/api/v1/product/${id}`);
   
       dispatch({
         type: DELETE_PRODUCT_SUCCESS,

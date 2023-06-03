@@ -1,3 +1,4 @@
+const backend="https://campusdiary.onrender.com"
 import {
     LOGIN_REQUEST,
     LOGIN_FAIL,
@@ -52,7 +53,7 @@ export const login = (email, password) => async (dispatch) => {
         })
         const config = { headers: { "Content-Type": "application/json" } };
 
-        const { data } = await axios.post(
+        const { data } = await axios.post(backend+
             `/api/v1/login`,
             { email, password },
             config
@@ -80,7 +81,7 @@ export const register = (userData) => async (dispatch) => {
         })
         const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-        const { data } = await axios.post(`/api/v1/register`, userData, config);
+        const { data } = await axios.post(backend+`/api/v1/register`, userData, config);
         dispatch({
             type: REGISTER_USER_SUCCESS,
             payload: data,
@@ -106,7 +107,7 @@ export const verifyuser= (token)=>async (dispatch)=>{
         })
         const config = { headers: { "Content-Type": "application/json" } };
   
-        const { data } = await axios.put(
+        const { data } = await axios.put(backend+
           `/api/v1/account/verify/${token}`,
           
           config
@@ -132,7 +133,7 @@ export const loadUser = () => async (dispatch) => {
         dispatch({
             type: LOAD_USER_REQUEST
         })
-        const { data } = await axios.get(`/api/v1/me`);
+        const { data } = await axios.get(backend+`/api/v1/me`);
         dispatch({
             type: LOAD_USER_SUCCESS,
             payload: data.user,
@@ -148,7 +149,7 @@ export const loadUser = () => async (dispatch) => {
 // logout user
 export const logout = () => async (dispatch) => {
     try {
-        await axios.get(`/api/v1/logout`);
+        await axios.get(backend+`/api/v1/logout`);
         dispatch({
             type: LOGOUT_SUCCESS
         })
