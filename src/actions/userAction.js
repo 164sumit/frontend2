@@ -58,9 +58,8 @@ export const login = (email, password) => async (dispatch) => {
             { email, password },
             config
         ).then((response)=>{
-            localStorage.setItem('token',response.data.token);
+            localStorage.setItem("token",response.data.token);
         });
-
         dispatch({
             type: LOGIN_SUCCESS,
             payload: data.user,
@@ -137,7 +136,7 @@ export const loadUser = () => async (dispatch) => {
             type: LOAD_USER_REQUEST
         })
         var token=await localStorage.getItem('token');
-        const { data } = await axios.post(backend+`/api/v1/me`,{token});
+        const { data } = await axios.get(backend+`/api/v1/me/${token}`);
         dispatch({
             type: LOAD_USER_SUCCESS,
             payload: data.user,
@@ -173,9 +172,8 @@ export const updateProfile = (userData) => async (dispatch) => {
         dispatch({
             type: UPDATE_PROFILE_REQUEST
         })
-        var token=await localStorage.getItem('token');
         const config = { headers: { "Content-Type": "multipart/form-data" } };
-        const { data } = await axios.post(backend+`/api/v1/me/update`, {userData,token}, config);
+        const { data } = await axios.put(backend+`/api/v1/me/update`, userData, config);
         dispatch({
             type: UPDATE_PROFILE_SUCCESS,
             payload: data.success
@@ -193,14 +191,13 @@ export const updateProfile = (userData) => async (dispatch) => {
 export const updatePassword = (passwords) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_PASSWORD_REQUEST });
-        var token=await localStorage.getItem('token');
+
         const config = { headers: { "Content-Type": "application/json" } };
 
         const { data } = await axios.put(backend+
             `/api/v1/password/update`,
-            {passwords,token},
+            passwords,
             config
-            
         );
 
         dispatch({ type: UPDATE_PASSWORD_SUCCESS, payload: data.success });
