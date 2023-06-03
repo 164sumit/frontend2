@@ -141,7 +141,7 @@ function ProductList() {
       products.forEach((item,index) => {
         rows.push({
           id: item._id,
-          stock: item.Stock,
+          
           price: item.price,
           name: item.name,
           rowStyle: {

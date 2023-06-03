@@ -1,3 +1,4 @@
+const backendurl="https://campusdiary.onrender.com"
 import {
     LOGIN_REQUEST,
     LOGIN_FAIL,
@@ -52,7 +53,7 @@ export const login = (email, password) => async (dispatch) => {
         })
         const config = { headers: { "Content-Type": "application/json" } };
 
-        const { data } = await axios.post(
+        const { data } = await axios.post(backendurl+
             `/api/v1/login`,
             { email, password },
             config
@@ -80,7 +81,7 @@ export const register = (userData) => async (dispatch) => {
         })
         const config = { headers: { "Content-Type": "multipart/form-data" } };
 
-        const { data } = await axios.post(`/api/v1/register`, userData, config);
+        const { data } = await axios.post(backendurl+`/api/v1/register`, userData, config);
         dispatch({
             type: REGISTER_USER_SUCCESS,
             payload: data,
@@ -106,7 +107,7 @@ export const verifyuser= (token)=>async (dispatch)=>{
         })
         const config = { headers: { "Content-Type": "application/json" } };
   
-        const { data } = await axios.put(
+        const { data } = await axios.put(backendurl+
           `/api/v1/account/verify/${token}`,
           
           config
@@ -132,7 +133,7 @@ export const loadUser = () => async (dispatch) => {
         dispatch({
             type: LOAD_USER_REQUEST
         })
-        const { data } = await axios.get(`/api/v1/me`);
+        const { data } = await axios.get(backendurl+`/api/v1/me`);
         dispatch({
             type: LOAD_USER_SUCCESS,
             payload: data.user,
@@ -148,7 +149,7 @@ export const loadUser = () => async (dispatch) => {
 // logout user
 export const logout = () => async (dispatch) => {
     try {
-        await axios.get(`/api/v1/logout`);
+        await axios.get(backendurl+`/api/v1/logout`);
         dispatch({
             type: LOGOUT_SUCCESS
         })
@@ -169,7 +170,7 @@ export const updateProfile = (userData) => async (dispatch) => {
             type: UPDATE_PROFILE_REQUEST
         })
         const config = { headers: { "Content-Type": "multipart/form-data" } };
-        const { data } = await axios.put(`/api/v1/me/update`, userData, config);
+        const { data } = await axios.put(backendurl+`/api/v1/me/update`, userData, config);
         dispatch({
             type: UPDATE_PROFILE_SUCCESS,
             payload: data.success
@@ -190,7 +191,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
 
         const config = { headers: { "Content-Type": "application/json" } };
 
-        const { data } = await axios.put(
+        const { data } = await axios.put(backendurl+
             `/api/v1/password/update`,
             passwords,
             config
@@ -212,7 +213,7 @@ export const forgotPassword = (email) => async (dispatch) => {
   
       const config = { headers: { "Content-Type": "application/json" } };
   
-      const { data } = await axios.post(`/api/v1/password/forgot`, email, config);
+      const { data } = await axios.post(backendurl+`/api/v1/password/forgot`, email, config);
   
       dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message });
     } catch (error) {
@@ -230,7 +231,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
   
       const config = { headers: { "Content-Type": "application/json" } };
   
-      const { data } = await axios.put(
+      const { data } = await axios.put(backendurl+
         `/api/v1/password/reset/${token}`,
         passwords,
         config
