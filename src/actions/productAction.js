@@ -72,7 +72,13 @@ export const getProduct1= ()=> async (dispatch) =>{
     //     if(sortByDate){
     // }
     console.log(url);
-        const product = await axios.get(backendurl+ url);
+        const product = await axios.get(backendurl+ url,{
+          headers: {
+            'Access-Control-Allow-Origin': 'https://frontend2-flax.vercel.app',
+            'Access-Control-Allow-Methods': 'GET',
+            'Access-Control-Allow-Headers': 'Content-Type',
+          }
+        });
         dispatch({
             type:ALL_PRODUCT_SUCCESS,
             payload:product.data
