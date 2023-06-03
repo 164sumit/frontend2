@@ -107,7 +107,7 @@ export const getAdminProduct = (email,keyword="",page=1) => async (dispatch) => 
     try {
       let token=localStorage.getItem("token")
       dispatch({ type: ADMIN_PRODUCT_REQUEST });
-      let url=`/api/v1/admin/products/${token}?&&email=${email}`;
+      let url=`/api/v1/admin/products/${token}?&email=${email}`;
   
       const { data } = await axios.get(backend+url);
   
@@ -158,9 +158,9 @@ export const getAdminProduct = (email,keyword="",page=1) => async (dispatch) => 
       dispatch({ type: UPDATE_PRODUCT_REQUEST });
   
       const config = { headers: { "Content-Type": "multipart/form-data" } };
-  
+      const token=localStorage.getItem('token')
       const { data } = await axios.put(backend+
-        `/api/v1/product/${id}`,
+        `/api/v1/product/${token}?&id=${id}`,
         productData,
         config
       );
@@ -182,8 +182,8 @@ export const getAdminProduct = (email,keyword="",page=1) => async (dispatch) => 
 export const deleteProduct = (id) => async (dispatch) => {
     try {
       dispatch({ type: DELETE_PRODUCT_REQUEST });
-  
-      const { data } = await axios.delete(backend+`/api/v1/product/${id}`);
+      var token=localStorage.getItem('token')
+      const { data } = await axios.delete(backend+`/api/v1/product/${token}?&id=${id}`);
   
       dispatch({
         type: DELETE_PRODUCT_SUCCESS,
