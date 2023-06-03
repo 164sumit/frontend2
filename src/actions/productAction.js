@@ -1,4 +1,4 @@
-const backend="https://back2-c397.onrender.com"
+const backend="https://campusmartb.onrender.com"
 import axios from "axios";
 import {
     ALL_PRODUCT_FAIL,

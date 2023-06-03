@@ -1,4 +1,4 @@
-const backend="https://back2-c397.onrender.com"
+const backend="https://campusmartb.onrender.com"
 import {
     LOGIN_REQUEST,
     LOGIN_FAIL,
