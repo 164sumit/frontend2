@@ -231,7 +231,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
   
       const config = { headers: { "Content-Type": "application/json" } };
   
-      const { data } = await axios.put(backendurl+
+      const { data } = await axios.put(backendurl
         `/api/v1/password/reset/${token}`,
         passwords,
         config
