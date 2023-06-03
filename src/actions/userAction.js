@@ -57,7 +57,10 @@ export const login = (email, password) => async (dispatch) => {
             `/api/v1/login`,
             { email, password },
             config
-        );
+        ).then((response)=>{
+            localStorage.setItem('token',response.data.token);
+        });
+
         dispatch({
             type: LOGIN_SUCCESS,
             payload: data.user,
@@ -133,7 +136,8 @@ export const loadUser = () => async (dispatch) => {
         dispatch({
             type: LOAD_USER_REQUEST
         })
-        const { data } = await axios.get(backend+`/api/v1/me`);
+        var token=await localStorage.getItem('token');
+        const { data } = await axios.post(backend+`/api/v1/me`,{token});
         dispatch({
             type: LOAD_USER_SUCCESS,
             payload: data.user,
