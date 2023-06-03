@@ -152,6 +152,7 @@ export const loadUser = () => async (dispatch) => {
 // logout user
 export const logout = () => async (dispatch) => {
     try {
+        localStorage.removeItem("token");
         await axios.get(backend+`/api/v1/logout`);
         dispatch({
             type: LOGOUT_SUCCESS
