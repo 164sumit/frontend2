@@ -173,8 +173,9 @@ export const updateProfile = (userData) => async (dispatch) => {
         dispatch({
             type: UPDATE_PROFILE_REQUEST
         })
+        var token=await localStorage.getItem('token');
         const config = { headers: { "Content-Type": "multipart/form-data" } };
-        const { data } = await axios.put(`/api/v1/me/update`, userData, config);
+        const { data } = await axios.post(backend+`/api/v1/me/update`, {userData,token}, config);
         dispatch({
             type: UPDATE_PROFILE_SUCCESS,
             payload: data.success
@@ -192,13 +193,14 @@ export const updateProfile = (userData) => async (dispatch) => {
 export const updatePassword = (passwords) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_PASSWORD_REQUEST });
-
+        var token=await localStorage.getItem('token');
         const config = { headers: { "Content-Type": "application/json" } };
 
-        const { data } = await axios.put(
+        const { data } = await axios.put(backend+
             `/api/v1/password/update`,
-            passwords,
+            {passwords,token},
             config
+            
         );
 
         dispatch({ type: UPDATE_PASSWORD_SUCCESS, payload: data.success });
@@ -217,7 +219,7 @@ export const forgotPassword = (email) => async (dispatch) => {
   
       const config = { headers: { "Content-Type": "application/json" } };
   
-      const { data } = await axios.post(`/api/v1/password/forgot`, email, config);
+      const { data } = await axios.post(backend+`/api/v1/password/forgot`, email, config);
   
       dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message });
     } catch (error) {
@@ -235,7 +237,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
   
       const config = { headers: { "Content-Type": "application/json" } };
   
-      const { data } = await axios.put(
+      const { data } = await axios.put(backend+
         `/api/v1/password/reset/${token}`,
         passwords,
         config

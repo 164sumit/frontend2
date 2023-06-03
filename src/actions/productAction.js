@@ -107,8 +107,8 @@ export const getAdminProduct = (email,keyword="",page=1) => async (dispatch) => 
     try {
       dispatch({ type: ADMIN_PRODUCT_REQUEST });
       let url=`/api/v1/admin/products/${email}?&keyword=${keyword}&page=${page}`;
-  
-      const { data } = await axios.get(backend+url);
+      var token=await localStorage.getItem('token');
+      const { data } = await axios.post(backend+url,{token});
   
       dispatch({
         type: ADMIN_PRODUCT_SUCCESS,
@@ -131,13 +131,16 @@ export const getAdminProduct = (email,keyword="",page=1) => async (dispatch) => 
       // const config = {
       //   headers: { "Content-Type": "application/json" },
       // };
+      var token=await localStorage.getItem('token');
       const config = { headers: { "Content-Type": "multipart/form-data" } };
       const { data } = await axios.post(backend+
         `/api/v1/product/new`,
-        productData,
-        config
+        {productData,token},
+        config,
+        
       );
   
+      
       dispatch({
         type: NEW_PRODUCT_SUCCESS,
         payload: data,
@@ -156,11 +159,12 @@ export const getAdminProduct = (email,keyword="",page=1) => async (dispatch) => 
       dispatch({ type: UPDATE_PRODUCT_REQUEST });
   
       const config = { headers: { "Content-Type": "multipart/form-data" } };
-  
+      var token=await localStorage.getItem('token');
       const { data } = await axios.put(backend+
         `/api/v1/product/${id}`,
         productData,
-        config
+        config,
+        
       );
   
       dispatch({
