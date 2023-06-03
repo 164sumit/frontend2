@@ -172,8 +172,9 @@ export const updateProfile = (userData) => async (dispatch) => {
         dispatch({
             type: UPDATE_PROFILE_REQUEST
         })
+        let token=localStorage.getItem('token')
         const config = { headers: { "Content-Type": "multipart/form-data" } };
-        const { data } = await axios.put(backend+`/api/v1/me/update`, userData, config);
+        const { data } = await axios.put(backend+`/api/v1/me/update/${token}`, userData, config);
         dispatch({
             type: UPDATE_PROFILE_SUCCESS,
             payload: data.success
@@ -191,11 +192,11 @@ export const updateProfile = (userData) => async (dispatch) => {
 export const updatePassword = (passwords) => async (dispatch) => {
     try {
         dispatch({ type: UPDATE_PASSWORD_REQUEST });
-
+        const token=localStorage.getItem("token");
         const config = { headers: { "Content-Type": "application/json" } };
 
         const { data } = await axios.put(backend+
-            `/api/v1/password/update`,
+            `/api/v1/password/update${token}`,
             passwords,
             config
         );
