@@ -105,8 +105,9 @@ export const getProductDetails= (id)=> async (dispatch) =>{
 // Get All Products For Admin
 export const getAdminProduct = (email,keyword="",page=1) => async (dispatch) => {
     try {
+      let token=localStorage.getItem("token")
       dispatch({ type: ADMIN_PRODUCT_REQUEST });
-      let url=`/api/v1/admin/products/${email}?&keyword=${keyword}&page=${page}`;
+      let url=`/api/v1/admin/products/${token}?&&email=${email}`;
   
       const { data } = await axios.get(backend+url);
   
