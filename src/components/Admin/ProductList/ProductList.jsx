@@ -89,7 +89,7 @@ function ProductList() {
       {
         field: "name",
         headerName: "Name",
-        minWidth: 250,
+        minWidth: 150,
         flex: 1,
       },
       // {
