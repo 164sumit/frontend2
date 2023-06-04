@@ -57,12 +57,11 @@ export const login = (email, password) => async (dispatch) => {
             `/api/v1/login`,
             { email, password },
             config
-        ).then((response)=>{
-            localStorage.setItem("token",response.data.token);
-        });
+        )
+        localStorage.setItem("token",data.token);
         dispatch({
             type: LOGIN_SUCCESS,
-            payload: data.user,
+            payload: data,
         })
 
 

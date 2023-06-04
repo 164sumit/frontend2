@@ -59,8 +59,8 @@ import {
     },
     LOGIN_SUCCESS:(state,action)=>{
         state.loading=false;
-        state.isAuthentication=true;
-        state.user=action.payload;
+        state.isAuthentication=action.payload.success;
+        state.user=action.payload.user;
         state.error=null;
     }
     ,
