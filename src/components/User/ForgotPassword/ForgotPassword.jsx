@@ -9,6 +9,7 @@ import {toast} from "react-toastify"
 import Loader from '../../layout/Loader/Loader'
 import MetaData from '../../layout/MetaData'
 import { clearErrors, forgotPassword } from '../../../actions/userAction'
+import { FORGOT_PASSWORD_RESET } from '../../../constants/userConstants';
 
 function ForgotPassword() {
     const dispatch = useDispatch();
@@ -53,6 +54,9 @@ function ForgotPassword() {
             progress: undefined,
             theme: "light",
             });
+            dispatch({
+              type:FORGOT_PASSWORD_RESET
+            })
       }
     }, [dispatch, error, message]);
   

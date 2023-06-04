@@ -11,7 +11,7 @@ import { useNavigate,useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../../actions/userAction";
 import Loader from "../../layout/Loader/Loader";
-import { VERIFY_USER_RESET } from "../../../constants/userConstants";
+import { REGISTER_USER_RESET, VERIFY_USER_RESET } from "../../../constants/userConstants";
 
 
 const LoginSignUp = () => {
@@ -143,9 +143,14 @@ const LoginSignUp = () => {
         progress: undefined,
         theme: "light",
         });
+        // dispatch({
+        //   type:VERIFY_USER_RESET,
+        // })
+
         dispatch({
-          type:VERIFY_USER_RESET,
+          type:REGISTER_USER_RESET,
         })
+        
 
 
     }

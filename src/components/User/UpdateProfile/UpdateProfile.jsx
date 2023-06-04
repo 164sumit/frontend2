@@ -21,7 +21,7 @@ function UpdateProfile() {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [avatar, setAvatar] = useState();
+  const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
 
   const updateProfileSubmit = (e) => {

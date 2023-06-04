@@ -5,6 +5,7 @@ import {
     REGISTER_USER_REQUEST,
     REGISTER_USER_SUCCESS,
     REGISTER_USER_FAIL,
+    REGISTER_USER_RESET,
     VERIFY_USER_REQUEST,
     VERIFY_USER_SUCCESS,
     VERIFY_USER_FAIL,
@@ -25,9 +26,11 @@ import {
     FORGOT_PASSWORD_REQUEST,
     FORGOT_PASSWORD_SUCCESS,
     FORGOT_PASSWORD_FAIL,
+    FORGOT_PASSWORD_RESET,
     RESET_PASSWORD_REQUEST,
     RESET_PASSWORD_SUCCESS,
     RESET_PASSWORD_FAIL,
+    RESET_PASSWORD_RESET,
     ALL_USERS_REQUEST,
     ALL_USERS_SUCCESS,
     ALL_USERS_FAIL,
@@ -87,6 +90,10 @@ import {
         state.user=null;
         state.isAuthentication=false;
     },
+    REGISTER_USER_RESET:(state)=>{
+        state.message=null;
+    },
+    
     LOAD_USER_REQUEST:(state)=>{
         // state.loading=true;
 
@@ -131,11 +138,12 @@ export const verifyuserReducer=createReducer({},{
         },
         VERIFY_USER_SUCCESS:(state,action)=>{
             state.loading=false;
-            state.isVerified=action.payload.success;
+            state.isVerified=action.payload.user.verified;
             state.user=action.payload.user;
         },
         VERIFY_USER_FAIL:(state,action)=>{
             state.loading=false;
+            state.isVerified=false;
             state.error=action.payload;
         },
         VERIFY_USER_RESET:(state)=>{
@@ -143,6 +151,9 @@ export const verifyuserReducer=createReducer({},{
             // state.isVerified=false;
             // state.user=null;
             state.message=null;
+        },
+        CLEAR_ERRORS:(state)=>{
+            state.error=null;
         }
 
  })
@@ -206,6 +217,9 @@ const forgetpassword_initial={
         state.message=action.payload;
 
     },
+    FORGOT_PASSWORD_RESET:(state,action)=>{
+        state.message=null;
+    },
     FORGOT_PASSWORD_FAIL:(state,action)=>{
         state.loading=false;
         state.error=action.payload
@@ -216,6 +230,9 @@ const forgetpassword_initial={
     RESET_PASSWORD_SUCCESS:(state,action)=>{
         state.loading=false;
         state.success=action.payload;
+    },
+    RESET_PASSWORD_RESET:(state,action)=>{
+        state.success=false;
     },
     RESET_PASSWORD_FAIL:(state,action)=>{
         state.loading=false;

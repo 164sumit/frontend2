@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import Loader from "../../layout/Loader/Loader";
 import TokenExpired from "../TokenExpired/TokenExpired";
-import VerificationMessage from "../VerificationMessage/VerificationMessage";
+import RegistrationConfirmation from "../RegistrationConfirmation/RegistrationConfirmation"
+import { VERIFY_USER_RESET } from "../../../constants/userConstants";
+// import VerificationMessage from "../VerificationMessage/VerificationMessage";
 function Verify() {
   const dispatch = useDispatch();
   const { token } = useParams()
@@ -12,7 +14,9 @@ function Verify() {
   useEffect(() => {
     dispatch(verifyuser(token));
 
-
+    dispatch({
+      type:VERIFY_USER_RESET
+    })
 
   }, [dispatch, token])
 
@@ -21,7 +25,7 @@ function Verify() {
       {loading ? <Loader /> :
         (
           <>
-            {isVerified ? <VerificationMessage /> : <TokenExpired />}
+            {isVerified ? <RegistrationConfirmation /> : <TokenExpired />}
           </>
         )
       }

@@ -9,6 +9,7 @@ import Loader from '../../layout/Loader/Loader'
 import MetaData from '../../layout/MetaData'
 
 import { BiLockOpen ,BiLock} from "react-icons/bi";
+import { RESET_PASSWORD_RESET } from '../../../constants/userConstants'
 
 function ResetPassword() {
     const dispatch = useDispatch();
@@ -64,7 +65,9 @@ function ResetPassword() {
             progress: undefined,
             theme: "light",
             });
-  
+            dispatch({
+              type:RESET_PASSWORD_RESET
+            });
         navigate("/login")
       }
     }, [dispatch, error, navigate, success,isAuthentication]);
