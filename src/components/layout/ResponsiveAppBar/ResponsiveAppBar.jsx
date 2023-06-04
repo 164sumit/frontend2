@@ -22,7 +22,6 @@ import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { logout } from '../../../actions/userAction';
 import {toast} from "react-toastify"
-import zIndex from '@mui/material/styles/zIndex';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -230,7 +229,7 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
-    <div style={{position:"sticky",top:"0px" }}>
+    <div>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>

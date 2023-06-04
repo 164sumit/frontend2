@@ -64,7 +64,7 @@ const ProductDetails = () => {
             {loading ? (
                 <Loader />
             ) : (
-                <Fragment>
+                <Fragment >
                     
                     <MetaData title={`${product.name} -- CampusMart`} />
 

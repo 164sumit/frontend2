@@ -38,7 +38,7 @@ function UpdateProduct() {
     const [price, setPrice] = useState(0);
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
-    const [Stock, setStock] = useState(0);
+    const [mobileNumber, setmobileNumber] = useState(0);
     const [images, setImages] = useState([]);
     const [oldImages, setOldImages] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([]);
@@ -55,7 +55,7 @@ function UpdateProduct() {
         setDescription(product.description);
         setPrice(product.price);
         setCategory(product.category);
-        setStock(product.Stock);
+        setmobileNumber(product.mobileNumber)
         setOldImages(product.images);
       }
       if (error) {
@@ -125,7 +125,7 @@ function UpdateProduct() {
       myForm.set("description", description);
       myForm.set("category", category);
       myForm.set("available", true);
-      myForm.set("mobileNumber", user.mobileNumber?user.mobileNumber:1234567890);
+      myForm.set("mobileNumber",mobileNumber );
   
       images.forEach((image) => {
         myForm.append("images", image);
@@ -215,6 +215,7 @@ function UpdateProduct() {
                   value={price}
                 />
               </div>
+
   
               <div>
                 <DescriptionIcon />
