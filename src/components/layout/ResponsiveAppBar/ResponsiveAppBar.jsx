@@ -285,7 +285,8 @@ export default function PrimarySearchAppBar() {
             <h2 style={{paddingRight:"10px"}}>CampusMart</h2>
             {/* <Typography>Cam</Typography> */}
           </Link>
-          
+          <Box sx={{ flexGrow: 1, display: { md: 'flex', xs: 'none' } }}>
+
           <Search>
             <SearchIconWrapper >
               <SearchIcon  />
@@ -299,6 +300,7 @@ export default function PrimarySearchAppBar() {
               />
             
           </Search>
+          </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page,index) => (
               <>
@@ -365,6 +367,21 @@ export default function PrimarySearchAppBar() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+    </Box>
+    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+    <Search>
+            <SearchIconWrapper >
+              <SearchIcon  onKeyPress={hendelkey} />
+            </SearchIconWrapper>
+            
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
+                onChange={(e) => setkeyword(e.target.value)}
+                
+              />
+            
+          </Search>
     </Box>
     </div>
   );
