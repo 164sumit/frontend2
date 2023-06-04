@@ -150,6 +150,7 @@ const LoginSignUp = () => {
         dispatch({
           type:REGISTER_USER_RESET,
         })
+        // navigate(`/verification/sodsmcldlk`);
         
 
 
@@ -169,7 +170,7 @@ const LoginSignUp = () => {
         dispatch(clearErrors());
     }
     
-  }, [isAuthentication, navigate,error,dispatch,message]);
+  }, [isAuthentication, navigate,error,dispatch,message,email]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {

@@ -5,7 +5,7 @@ import {useSelector} from "react-redux"
 const VerificationMessage = () => {
 //   const { email } = useParams();
   const {user,loading}=useSelector(state=>state.user);
-
+  
   const handleOpenEmail = () => {
     // Open the user's email client with the verification email
     // window.open(`mailto:${user?user.email:null}`);
