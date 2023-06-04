@@ -230,7 +230,7 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
-    <div style={{position:"sticky",top:"0px" ,zIndex:"78843783"}}>
+    <div style={{position:"sticky",top:"0px" }}>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
