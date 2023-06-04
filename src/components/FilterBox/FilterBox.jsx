@@ -7,7 +7,7 @@ const FilterBox = (props) => {
   const navigate=useNavigate()
   const { keyword } = useParams();
   const location=useLocation();
-  const defaultCategories = ["Laptop", "Bicycle", "Shoes"];
+  const defaultCategories = [ "Electronics", "Cycles", "Books", "Notes","Sports Equipment","Appliances","Other"];
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(100000);
   const [selectedCategory, setSelectedCategory] = useState('');
