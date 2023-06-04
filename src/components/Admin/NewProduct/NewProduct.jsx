@@ -167,7 +167,7 @@ function NewProduct() {
       <>{loading?<Loader/>:
       <Fragment>
         <MetaData title="Create Product" />
-        <div style={{minHeight:"100vh"}} className="dashboard">
+        <div  className="dashboard">
           <Sidebar />
           <div className="newProductContainer">
             <form
@@ -177,7 +177,7 @@ function NewProduct() {
             >
               <h1>Create Product</h1>
   
-              <div>
+              <div >
                 <SpellcheckIcon />
                 <input
                   type="text"

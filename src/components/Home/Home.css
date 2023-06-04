@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
     color: white;
-    min-height: 100vh;
+    min-height: 30vh;
   }
   
   .banner > h1 {
@@ -85,6 +85,9 @@
   }
   
   @media (max-width: 768px) {
+    .banner{
+      min-height: 30vh;
+    }
     .container2 {
       grid-template-columns: 1fr;
     }

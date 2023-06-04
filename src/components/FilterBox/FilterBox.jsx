@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Range } from 'react-range';
 import './FilterBox.css'; // CSS file for styling
-import { useLocation, useNavigate, useParams  } from 'react-router-dom';
+import { useLocation, useNavigate, useParams, useSearchParams  } from 'react-router-dom';
 
 const FilterBox = (props) => {
   const navigate=useNavigate()
@@ -54,6 +54,12 @@ const FilterBox = (props) => {
   //   props.applyFilters(filters);
   //   props.setFilterVisible(false);
   // };
+  const [searchParams, setSearchParams] = useSearchParams();
+  const handleResetFilters=()=>{
+    
+    setSearchParams('');
+    props.setFilterVisible(false);
+  }
   const handleApplyFilters = useCallback(() => {
     const filters = {priceRange: [minPrice, maxPrice],
           category: selectedCategory,
@@ -254,9 +260,14 @@ const FilterBox = (props) => {
         />
         <label>Sort by Date</label>
       </div>
+      <div className='button'>
       <button className="apply-filters-button" onClick={handleApplyFilters}>
         Apply Filters
       </button>
+      <button className="reset-filters-button" onClick={handleResetFilters}>
+        Reset Filters
+      </button>
+      </div>
     </div>
   );
 };

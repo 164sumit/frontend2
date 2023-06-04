@@ -41,7 +41,7 @@ import HelpPage from './components/layout/HelpPage/HelpPage';
 import TokenExpired from './components/User/TokenExpired/TokenExpired';
 import VerificationMessage from './components/User/VerificationMessage/VerificationMessage';
 import Verify from './components/User/Verify/Verify';
-
+import Ttt from "./components/Ttt/Ttt"
 
 function App() {
   const {isAuthentication,user,loading}=useSelector(state=>state.user);
@@ -79,7 +79,7 @@ function App() {
         <Route path='/help' element={<HelpPage/>}/>
         <Route path="/login/:register" element={<Login />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/test" element={<Test1 />} />
+        <Route path="/test" element={<Ttt />} />
         <Route path="password/forgot" element={<ForgotPassword />} />
         <Route path="password/reset/:token" element={<ResetPassword />} />
 

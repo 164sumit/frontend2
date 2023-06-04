@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from '../../actions/productAction';
 import ProductCard from '../Home/ProductCard';
 import SearchBox from '../Searchbox/SearchBox';
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams,useSearchParams,useNavigate } from "react-router-dom";
 import Pagination from '../Pagenation/Pagination';
 import MetaData from '../layout/MetaData';
 import Loader from '../layout/Loader/Loader';
@@ -17,6 +17,7 @@ const Test = () => {
   // let query = useQueryHook();
   const { keyword } = useParams();
   const dispatch = useDispatch();
+  const navigate=useNavigate()
   const location = useLocation();
   const [currentPage, onPageChange] = useState(1);
   const [filters, applyFilters] = useState({
@@ -37,6 +38,8 @@ const Test = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [sortBy, setSortBy] = useState('');
   const [sortByDate, setSortByDate] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+
   // useEffect(() => {
   //   // Get the query parameters from the current URL
   //   const queryParams = new URLSearchParams(location.search);
@@ -75,10 +78,18 @@ const Test = () => {
   //   // dispatch(getProduct(keyword, currentPage, parsedMaxPrice, parsedMinPrice, categoryParam, sortByDateParam, sortByParam));
 
   // }, [location.search,dispatch, keyword, currentPage]);
+ 
   useEffect(() => {
     // Get the query parameters from the current URL
     const queryParams = new URLSearchParams(location.search);
-
+    const pageParam=queryParams.get('page');
+    if(Number(pageParam)==0){
+      onPageChange(1)
+    }
+    else{
+      onPageChange(Number(pageParam))
+    }
+    // onPageChange(Number(pageParam)?Number(pageParam):1);
     // Retrieve the priceRange query parameter
     const priceRangeParam = queryParams.get('priceRange');
 
@@ -122,12 +133,15 @@ const Test = () => {
       // Reset selectedCategory to its initial value
       setSelectedCategory('');
     }
+
     const filters = {
       priceRange: [minPrice, maxPrice],
       category: selectedCategory,
       sortBy,
-      sortByDate
+      sortByDate,
+      currentPage
     };
+    
     applyFilters(filters);
     console.log(filters);
     const timer = setTimeout(() => {
@@ -140,10 +154,14 @@ const Test = () => {
     };
 
 
-  }, [location.search, maxPrice, minPrice, selectedCategory, sortBy, sortByDate, dispatch, keyword, currentPage]);
+  }, [location.search, maxPrice, minPrice, selectedCategory, sortBy, sortByDate, dispatch, keyword, currentPage,setSearchParams]);
   // useEffect(() => {
 
   // }, [dispatch, keyword, currentPage, filters]);
+  // useEffect(()=>{
+    
+
+  // },[setSearchParams,currentPage])
 
   useEffect(() => {
     const handleResize = () => {

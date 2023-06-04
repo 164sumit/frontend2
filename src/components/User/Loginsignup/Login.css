@@ -75,7 +75,7 @@
   box-sizing: border-box;
   border: 1px solid rgba(0, 0, 0, 0.267);
   border-radius: 4px;
-  font: 300 0.9vmax cursive;
+  font:  1vmax "Arial", sans-serif;
   outline: none;
 }
 
@@ -115,7 +115,7 @@
   height: 5vh;
   border: none;
   margin: 0%;
-  font: 400 0.8vmax cursive;
+  font: 400 0.8vmax ;
   transition: all 0.5s;
   padding: 0 1vmax;
   color: rgba(0, 0, 0, 0.623);
@@ -174,7 +174,7 @@
     height: 5vmax;
   }
   .login_signUp_toggle > p {
-    font: 300 1.5vmax "Roboto";
+    font: 300 2.5vmax "Roboto";
   }
 
   .loginForm,
@@ -185,7 +185,7 @@
   .loginForm > div > input,
   .signUpForm > div > input {
     padding: 2.5vmax 5vmax;
-    font: 300 1.7vmax cursive;
+    font: 500 2vmax "Arial", sans-serif;
   }
 
   .loginForm > div > svg,
@@ -204,7 +204,7 @@
 
   #registerImage > input::file-selector-button {
     height: 7vh;
-    font: 400 1.8vmax cursive;
+    font: 400 1.8vmax ;
   }
 
   .loginBtn,

@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 import './Pagination.css';
-
+import {useLocation,useNavigate} from "react-router-dom"
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const [inputPage, setInputPage] = useState('');
-
+  const location = useLocation();
+  const navigate = useNavigate();
   const handlePageChange = (page) => {
     if (page === currentPage) return;
     onPageChange(page);
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set("page",page);
+    // searchParams.delete('param2');
+    // Add any other query parameters you want to remove here
+
+    navigate({
+      search: searchParams.toString()
+    });
   };
 
   const handleInputChange = (e) => {
