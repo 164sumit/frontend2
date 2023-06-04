@@ -196,7 +196,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
         const config = { headers: { "Content-Type": "application/json" } };
 
         const { data } = await axios.put(backend+
-            `/api/v1/password/update${token}`,
+            `/api/v1/password/update/${token}`,
             passwords,
             config
         );
