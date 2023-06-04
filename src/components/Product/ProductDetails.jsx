@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import Loader from "../layout/Loader/Loader";
 import MetaData from "../layout/MetaData";
 import "./detail.css";
-
+import image from "../../assets/Image_not_available.png"
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -71,7 +71,7 @@ const ProductDetails = () => {
                     <div className="ProductDetails ">
                         <div className="image" >
                         
-                            {product.images?
+                            {product.images.length?
                             // <SimpleImageSlider
                             //     width={896}
                             //     height={504}
@@ -90,7 +90,7 @@ const ProductDetails = () => {
           &#8250;
         </button>
         </div>
-                            :null
+                            :<img className="slider-image" src={image}></img>
                             }
                             </div>
                         

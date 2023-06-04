@@ -43,15 +43,7 @@ function UpdateProduct() {
     const [oldImages, setOldImages] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([]);
   
-    const categories = [
-      "Laptop",
-      "Footwear",
-      "Bottom",
-      "Tops",
-      "Attire",
-      "Camera",
-      "SmartPhones",
-    ];
+    const categories = [ "Electronics", "Cycles", "Books", "Notes","Sports Equipment","Appliances","Other"];
   
     const {id:productId} = useParams();
   
@@ -251,16 +243,7 @@ function UpdateProduct() {
                 </select>
               </div>
   
-              <div>
-                <StorageIcon />
-                <input
-                  type="number"
-                  placeholder="Stock"
-                  required
-                  onChange={(e) => setStock(e.target.value)}
-                  value={Stock}
-                />
-              </div>
+              
   
               <div id="createProductFormFile">
                 <input
