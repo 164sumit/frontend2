@@ -10,6 +10,7 @@ import SearchBox from '../Searchbox/SearchBox';
 import { useLocation, useParams } from "react-router-dom";
 import Pagination from '../Pagenation/Pagination';
 import MetaData from '../layout/MetaData';
+import Loader from '../layout/Loader/Loader';
 // import useQueryHook from '../../customhooks/useQueryHook';
 
 const Test = () => {
@@ -44,10 +45,10 @@ const Test = () => {
   //   const priceRangeParam = queryParams.get('priceRange');
 
   //   // Parse the min and max prices from the priceRangeParam
-    
+
   //   if (priceRangeParam) {
   //     var [parsedMinPrice, parsedMaxPrice] = priceRangeParam.split(',');
-      
+
   //   }
   //   else{
   //     parsedMinPrice=0;
@@ -55,22 +56,22 @@ const Test = () => {
 
   //   }
   //   // const [parsedMinPrice, parsedMaxPrice] = priceRangeParam.split(',');
-      
-    
+
+
 
   //   // Retrieve the sortBy query parameter
   //   const sortByParam = queryParams.get('sortBy');
-   
+
 
   //   // Retrieve the sortByDate query parameter
   //   const sortByDateParam = queryParams.get('sortByDate');
-    
+
 
   //   // Retrieve the category query parameter
   //   const categoryParam = queryParams.get('category');
   //   console.log(keyword, currentPage, Number(parsedMaxPrice), Number(parsedMinPrice), categoryParam?categoryParam:"ALL", sortByDateParam?sortByDateParam:"", sortByParam?sortByParam:"");
-    
-    
+
+
   //   // dispatch(getProduct(keyword, currentPage, parsedMaxPrice, parsedMinPrice, categoryParam, sortByDateParam, sortByParam));
 
   // }, [location.search,dispatch, keyword, currentPage]);
@@ -86,7 +87,7 @@ const Test = () => {
       const [parsedMinPrice, parsedMaxPrice] = priceRangeParam.split(',');
       setMinPrice(Number(parsedMinPrice));
       setMaxPrice(Number(parsedMaxPrice));
-      if(Number(parsedMaxPrice)===0){
+      if (Number(parsedMaxPrice) === 0) {
         setMaxPrice(100000);
       }
     } else {
@@ -121,23 +122,25 @@ const Test = () => {
       // Reset selectedCategory to its initial value
       setSelectedCategory('');
     }
-    const filters = {priceRange: [minPrice, maxPrice],
+    const filters = {
+      priceRange: [minPrice, maxPrice],
       category: selectedCategory,
       sortBy,
-      sortByDate};
-      applyFilters(filters);
-      console.log(filters);
-      const timer = setTimeout(() => {
-        dispatch(getProduct(keyword, currentPage, filters.priceRange[1], filters.priceRange[0], filters.category, filters.sortByDate, filters.sortBy));
-        
-      }, 500);
-  
-      return () => {
-        clearTimeout(timer);
-      };
+      sortByDate
+    };
+    applyFilters(filters);
+    console.log(filters);
+    const timer = setTimeout(() => {
+      dispatch(getProduct(keyword, currentPage, filters.priceRange[1], filters.priceRange[0], filters.category, filters.sortByDate, filters.sortBy));
+
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+    };
 
 
-  }, [location.search,maxPrice,minPrice,selectedCategory,sortBy,sortByDate,dispatch, keyword, currentPage]);
+  }, [location.search, maxPrice, minPrice, selectedCategory, sortBy, sortByDate, dispatch, keyword, currentPage]);
   // useEffect(() => {
 
   // }, [dispatch, keyword, currentPage, filters]);
@@ -152,32 +155,33 @@ const Test = () => {
   }, []);
 
   return (
-    <>
-      <MetaData title={keyword ? keyword : "Products"} />
+    <>{loading ? <Loader /> :
       <>
-        <div className="cont" >
-          {isFilterVisible && <FilterBox applyFilters={applyFilters} setFilterVisible={setFilterVisible} />}
-          {isFilterVisible ? (
-            <div className="hide-button" onClick={() => setFilterVisible(false)}>
-              <CloseIcon />
-            </div>
-          ) : <div className="filter-icon" onClick={() => setFilterVisible(true)}>
-            <FilterAltIcon />
-          </div>}
+        <MetaData title={keyword ? keyword : "Products"} />
+        <>
+          <div className="cont" >
+            {isFilterVisible && <FilterBox applyFilters={applyFilters} setFilterVisible={setFilterVisible} />}
+            {isFilterVisible ? (
+              <div className="hide-button" onClick={() => setFilterVisible(false)}>
+                <CloseIcon />
+              </div>
+            ) : <div className="filter-icon" onClick={() => setFilterVisible(true)}>
+              <FilterAltIcon />
+            </div>}
 
-        </div>
-        <div className="container2" >
-          {products?products.map((product) => (
-            <ProductCard key={product._id} product={product} />
+          </div>
+          <div className="container2" >
+            {products ? products.map((product) => (
+              <ProductCard key={product._id} product={product} />
 
-          )):null}
+            )) : null}
 
-        </div>
+          </div>
 
-      </>
+        </>
 
-      <div  className={`app-container${isMobileDisplay ? ' mobile-display' : ''}`}>
-        {/* {isMobileDisplay ? (
+        <div className={`app-container${isMobileDisplay ? ' mobile-display' : ''}`}>
+          {/* {isMobileDisplay ? (
           <>
 
             {isFilterVisible && <FilterBox applyFilters={applyFilters} />}
@@ -195,7 +199,7 @@ const Test = () => {
             <FilterBox setFilterVisible={setFilterVisible} applyFilters={applyFilters} />
           </div>
         )} */}
-        {/* <div className="product-container">
+          {/* <div className="product-container">
           <div className="searchbox">
             <SearchBox />
           </div>
@@ -205,15 +209,17 @@ const Test = () => {
             ))}
           </div>
         </div> */}
-        {/* <div className="container2" >
+          {/* <div className="container2" >
           {products.map((product) => (
             <ProductCard key={product._id} product={product} />
 
           ))}
 
         </div> */}
-      </div>
-      <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
+        </div>
+        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
+      </>
+    }
     </>
   );
 };

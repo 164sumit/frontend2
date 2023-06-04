@@ -71,7 +71,7 @@ const ProductDetails = () => {
                     <div className="ProductDetails ">
                         <div className="image" >
                         
-                            {product.images.length?
+                            {product.images?
                             // <SimpleImageSlider
                             //     width={896}
                             //     height={504}
@@ -82,7 +82,7 @@ const ProductDetails = () => {
                             // />
                             <div className="slider">
                             
-                            <img className="slider-image" src={product.images[currentIndex].url}></img>
+                            <img className="slider-image" src={product.images.length?product.images[currentIndex].url:image}></img>
                             <button className="arrow previous" onClick={handlePrevious} >
           &#8249;
         </button>
