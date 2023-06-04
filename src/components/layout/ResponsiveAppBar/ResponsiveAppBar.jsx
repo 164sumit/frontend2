@@ -378,6 +378,7 @@ export default function PrimarySearchAppBar() {
                 placeholder="Search…"
                 inputProps={{ 'aria-label': 'search' }}
                 onChange={(e) => setkeyword(e.target.value)}
+                onKeyPress={hendelkey}
                 
               />
             
